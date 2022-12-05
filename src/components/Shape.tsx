@@ -57,10 +57,15 @@ const Shape = ({
     const global_color = { [shape]: color }
     const { triangle, circle, square } = globalColors
     if (triangle === circle && circle === square)
-      alert("los tres tiene el mismo color")
-    setGlobalcolors((prev: any) => ({ ...prev, ...global_color }))
+    // if (triangle === circle && circle === square && square === triangle)
+      console.log("los tres tiene el mismo color")
+    setGlobalcolors((prev: Color) => ({ ...prev, ...global_color }))
   }, [color])
 
+  const asignColor = (shape: string): string => {
+    const { triangle, circle, square } = globalColors
+    return shape == "triangle" ? triangle : shape == "circle" ? circle : square
+  }
 
   const handleColor = ({
     target: { value },
@@ -77,7 +82,7 @@ const Shape = ({
     <div style={divStyle}>
       <div>
         <label>Elige un color:</label>
-        <input onChange={handleColor} type="color" value={color} />
+        <input onChange={handleColor} type="color" value={asignColor(shape)} />
       </div>
       <div>
         <label>Elige el tamaño:</label>
