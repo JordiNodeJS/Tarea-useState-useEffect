@@ -9,7 +9,7 @@ function App() {
     square: 30
   }
   const initialColor: Color = {
-    triangle: '#555',
+    triangle: '#555caca',
     circle: '#554040',
     square: '#555222'
   }
