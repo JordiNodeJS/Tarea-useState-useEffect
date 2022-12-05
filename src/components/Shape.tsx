@@ -13,7 +13,6 @@ type Props = {
   stateColors: any
   shape: string
   size: Size
-  colorProp?: string
   handleChange: ChangeEventHandler
 }
 
@@ -21,10 +20,9 @@ const Shape = ({
   stateColors: [globalColors, setGlobalcolors],
   shape,
   size,
-  colorProp,
   handleChange,
 }: Props) => {
-  const [color, setColor] = useState(colorProp)
+  const [color, setColor] = useState(asignColor(shape))
   const { triangle, circle, square } = size
 
   const divStyle = {
@@ -57,12 +55,11 @@ const Shape = ({
     const global_color = { [shape]: color }
     const { triangle, circle, square } = globalColors
     if (triangle === circle && circle === square)
-    // if (triangle === circle && circle === square && square === triangle)
-      console.log("los tres tiene el mismo color")
+      alert("los tres tiene el mismo color")
     setGlobalcolors((prev: Color) => ({ ...prev, ...global_color }))
   }, [color])
 
-  const asignColor = (shape: string): string => {
+  function asignColor(shape: string): string {
     const { triangle, circle, square } = globalColors
     return shape == "triangle" ? triangle : shape == "circle" ? circle : square
   }
@@ -82,7 +79,7 @@ const Shape = ({
     <div style={divStyle}>
       <div>
         <label>Elige un color:</label>
-        <input onChange={handleColor} type="color" value={asignColor(shape)} />
+        <input onChange={handleColor} type="color" value={color} />
       </div>
       <div>
         <label>Elige el tamaño:</label>
