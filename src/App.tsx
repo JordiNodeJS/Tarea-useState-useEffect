@@ -3,6 +3,9 @@ import "./App.css"
 import Shape, { Size, Color } from "./components/Shape"
 
 function App() {
+  // Mejor declarar la constante fuera de una función
+  // o componente funcional, sino se redeclara cuando se renderiza de nuevo.
+  
   const initialSize: Size = {
     triangle: 70,
     circle: 60,
@@ -26,7 +29,9 @@ function App() {
   const handleSize = ({
     target: { value, name },
   }: ChangeEvent<HTMLInputElement>): void => {
+    // Eliminar console.log
     console.log(name, value)
+    // ¿Qué hace el + en +value?
     let newState = { [name]: +value }
     newState = { ...newState }
     setSize((prev: Size) => ({ ...prev, ...newState }))
